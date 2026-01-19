@@ -85,7 +85,7 @@ const UpsellPopup: React.FC<UpsellPopupProps> = ({ selectedKit, onAccept, onReje
                 </div>
                 <div className="text-right">
                    <p className="text-[10px] font-bold text-gray-400 line-through">R$ 65,40</p>
-                   <p className="text-2xl font-black text-orange-600 tracking-tighter">R$ 34,90</p>
+                   <p className="text-2xl font-black text-orange-600 tracking-tighter">R$ 24,90</p>
                 </div>
               </div>
 
@@ -109,7 +109,7 @@ const UpsellPopup: React.FC<UpsellPopupProps> = ({ selectedKit, onAccept, onReje
               onClick={onAccept}
               className="w-full bg-gradient-to-r from-orange-600 to-orange-500 hover:from-orange-500 hover:to-orange-400 text-white py-5 sm:py-6 rounded-2xl font-black text-base sm:text-xl shadow-[0_15px_30px_-5px_rgba(234,88,12,0.5)] transition-all transform hover:scale-[1.02] active:scale-[0.98] uppercase tracking-tight flex flex-col items-center group"
             >
-              <span className="group-hover:translate-x-1 transition-transform">ADICIONAR TUDO + BÔNUS POR R$ 34,90</span>
+              <span className="group-hover:translate-x-1 transition-transform">ADICIONAR TUDO + BÔNUS POR R$ 24,90</span>
               <span className="text-[10px] sm:text-[11px] opacity-90 font-bold mt-1 tracking-widest uppercase">Garantir Oferta Única</span>
             </button>
             
