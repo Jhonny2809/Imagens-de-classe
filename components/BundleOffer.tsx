@@ -1,23 +1,23 @@
+
 import React from 'react';
 import { BUNDLE_CHECKOUT_URL } from '../constants';
 
 const BundleOffer: React.FC = () => {
-  // --- FUNÇÃO PARA PEGAR AS UTMs E MANDAR PARA A CAKTO ---
-  const handlePurchase = (url: string) => {
+  // Função para anexar os parâmetros da URL atual (UTMs) ao link de checkout
+  const getFinalCheckoutUrl = (baseUrl: string): string => {
+    if (typeof window === 'undefined') return baseUrl;
     const currentParams = window.location.search;
-    let finalUrl = url;
-
-    if (currentParams) {
-      if (finalUrl.includes('?')) {
-        finalUrl += '&' + currentParams.substring(1);
-      } else {
-        finalUrl += currentParams;
-      }
-    }
-
-    window.open(finalUrl, '_blank');
+    if (!currentParams) return baseUrl;
+    
+    // Remove o '?' inicial se existir
+    const cleanParams = currentParams.startsWith('?') ? currentParams.substring(1) : currentParams;
+    // Verifica se a URL base já possui parâmetros para usar & ou ?
+    const separator = baseUrl.includes('?') ? '&' : '?';
+    
+    return `${baseUrl}${separator}${cleanParams}`;
   };
-  // -------------------------------------------------------
+
+  const finalUrl = getFinalCheckoutUrl(BUNDLE_CHECKOUT_URL);
 
   return (
     <section id="oferta" className="py-20 scroll-mt-10">
@@ -81,13 +81,14 @@ const BundleOffer: React.FC = () => {
               </div>
             </div>
 
-            {/* Botão atualizado com a função de UTMs */}
-            <button 
-              onClick={() => handlePurchase(BUNDLE_CHECKOUT_URL)}
+            <a 
+              href={finalUrl}
+              target="_blank"
+              rel="noopener noreferrer"
               className="w-full md:w-auto bg-orange-600 hover:bg-orange-500 text-white px-6 py-4 md:px-12 md:py-6 rounded-2xl font-black text-lg sm:text-xl md:text-3xl transition-all transform hover:scale-[1.02] active:scale-[0.98] shadow-2xl flex items-center justify-center gap-4 mx-auto uppercase tracking-tight"
             >
               Quero o Pacote Completo Agora
-            </button>
+            </a>
             
             <p className="mt-6 text-gray-500 flex items-center justify-center gap-2 text-[10px] md:text-sm font-medium">
               <span className="text-lg md:text-xl">🔒</span> Pagamento 100% Seguro e Entrega Instantânea via E-mail

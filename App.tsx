@@ -17,6 +17,20 @@ const App: React.FC = () => {
     selectedKit: null
   });
 
+  // Função robusta para anexar UTMs da URL atual ao link de destino
+  const appendCurrentParams = (baseUrl: string): string => {
+    if (typeof window === 'undefined') return baseUrl;
+    const currentParams = window.location.search;
+    if (!currentParams) return baseUrl;
+    
+    // Remove o '?' inicial se existir
+    const cleanParams = currentParams.startsWith('?') ? currentParams.substring(1) : currentParams;
+    // Verifica se a URL base já possui parâmetros para usar & ou ?
+    const separator = baseUrl.includes('?') ? '&' : '?';
+    
+    return `${baseUrl}${separator}${cleanParams}`;
+  };
+
   // Bloquear scroll quando o popup abrir
   useEffect(() => {
     if (upsell.isOpen) {
@@ -43,13 +57,17 @@ const App: React.FC = () => {
   };
 
   const handleUpsellAccept = () => {
-    window.open(UPSELL_CHECKOUT_URL, '_blank');
+    // Repasse de UTM para o checkout de R$ 34,90
+    const finalUrl = appendCurrentParams(UPSELL_CHECKOUT_URL);
+    window.open(finalUrl, '_blank');
     setUpsell({ isOpen: false, selectedKit: null });
   };
 
   const handleUpsellReject = () => {
     if (upsell.selectedKit) {
-      window.open(upsell.selectedKit.checkoutUrl, '_blank');
+      // Repasse de UTM para o checkout individual de R$ 10,90
+      const finalUrl = appendCurrentParams(upsell.selectedKit.checkoutUrl);
+      window.open(finalUrl, '_blank');
       setUpsell({ isOpen: false, selectedKit: null });
     }
   };
@@ -61,7 +79,7 @@ const App: React.FC = () => {
         
         <PainPoints />
 
-        {/* Showcase Samples (Dica Extra) */}
+        {/* Showcase Samples */}
         <section className="py-20 bg-white">
           <div className="container mx-auto px-4">
             <div className="text-center max-w-3xl mx-auto mb-16">

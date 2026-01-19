@@ -1,7 +1,6 @@
+
 import React, { useState, useEffect } from 'react';
 import { ClassKit } from '../types';
-// 1. Importamos a URL do checkout para garantir que temos o link certo
-import { BUNDLE_CHECKOUT_URL } from '../constants';
 
 interface UpsellPopupProps {
   selectedKit: ClassKit;
@@ -11,29 +10,6 @@ interface UpsellPopupProps {
 
 const UpsellPopup: React.FC<UpsellPopupProps> = ({ selectedKit, onAccept, onReject }) => {
   const [timeLeft, setTimeLeft] = useState(120); // 2 minutes
-
-  // --- 2. NOVA FUNÇÃO: PEGA AS UTMS E ABRE O CHECKOUT ---
-  const handleBuyWithUTMs = () => {
-    // Pega as etiquetas (UTM) da URL do navegador
-    const currentParams = window.location.search;
-    let finalUrl = BUNDLE_CHECKOUT_URL;
-
-    // Se tiver UTMs, cola no final do link da Cakto
-    if (currentParams) {
-      if (finalUrl.includes('?')) {
-        finalUrl += '&' + currentParams.substring(1);
-      } else {
-        finalUrl += currentParams;
-      }
-    }
-
-    // Abre o checkout com o rastreamento
-    window.open(finalUrl, '_blank');
-    
-    // Chama a função original (caso ela precise fechar o modal ou fazer analytics)
-    onAccept();
-  };
-  // -------------------------------------------------------
 
   useEffect(() => {
     if (timeLeft <= 0) return;
@@ -130,7 +106,40 @@ const UpsellPopup: React.FC<UpsellPopupProps> = ({ selectedKit, onAccept, onReje
           {/* CTA Buttons */}
           <div className="space-y-3 sm:space-y-4">
             <button 
-              // 3. AQUI ESTÁ A CORREÇÃO: Usamos a nova função em vez de apenas onAccept
-              onClick={handleBuyWithUTMs}
+              onClick={onAccept}
               className="w-full bg-gradient-to-r from-orange-600 to-orange-500 hover:from-orange-500 hover:to-orange-400 text-white py-5 sm:py-6 rounded-2xl font-black text-base sm:text-xl shadow-[0_15px_30px_-5px_rgba(234,88,12,0.5)] transition-all transform hover:scale-[1.02] active:scale-[0.98] uppercase tracking-tight flex flex-col items-center group"
             >
+              <span className="group-hover:translate-x-1 transition-transform">ADICIONAR TUDO + BÔNUS POR R$ 34,90</span>
+              <span className="text-[10px] sm:text-[11px] opacity-90 font-bold mt-1 tracking-widest uppercase">Garantir Oferta Única</span>
+            </button>
+            
+            <button 
+              onClick={onReject}
+              className="w-full text-gray-400 hover:text-gray-600 font-bold text-[10px] sm:text-xs uppercase tracking-[0.15em] transition-colors py-2"
+            >
+              Não, quero pagar R$ 10,90 por classe (Sem Bônus)
+            </button>
+          </div>
+        </div>
+
+        {/* Trust Badges */}
+        <div className="bg-gray-50/80 p-4 sm:p-5 flex justify-center gap-4 sm:gap-8 border-t border-gray-100 shrink-0">
+          <div className="flex items-center gap-1.5 opacity-60">
+            <span className="text-base">💳</span>
+            <span className="text-[8px] sm:text-[9px] font-black uppercase tracking-tighter text-gray-600">Seguro</span>
+          </div>
+          <div className="flex items-center gap-1.5 opacity-60">
+            <span className="text-base">⚡</span>
+            <span className="text-[8px] sm:text-[9px] font-black uppercase tracking-tighter text-gray-600">Imediato</span>
+          </div>
+          <div className="flex items-center gap-1.5 opacity-60">
+            <span className="text-base">🛡️</span>
+            <span className="text-[8px] sm:text-[9px] font-black uppercase tracking-tighter text-gray-600">Garantia</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+export default UpsellPopup;
