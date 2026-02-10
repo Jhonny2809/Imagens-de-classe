@@ -76,8 +76,8 @@ const BundleOffer: React.FC = () => {
               <span className="text-gray-400 line-through text-lg md:text-xl">Preço total: R$ 65,40</span>
               <div className="flex flex-col items-center">
                 <span className="text-gray-600 font-bold text-sm md:text-base">HOJE NO PACOTE COMPLETO:</span>
-                <span className="text-6xl md:text-8xl font-black text-orange-600 drop-shadow-sm tracking-tighter">R$ 34,90</span>
-                <span className="text-green-600 font-bold mt-2 text-sm md:text-base">Isso dá menos de R$ 6,00 por classe!</span>
+                <span className="text-6xl md:text-8xl font-black text-orange-600 drop-shadow-sm tracking-tighter">R$ 28,90</span>
+                <span className="text-green-600 font-bold mt-2 text-sm md:text-base">Isso dá menos de R$ 5,00 por classe!</span>
               </div>
             </div>
 

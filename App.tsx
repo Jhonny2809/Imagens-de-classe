@@ -57,7 +57,7 @@ const App: React.FC = () => {
   };
 
   const handleUpsellAccept = () => {
-    // Repasse de UTM para o checkout de R$ 24,90
+    // Repasse de UTM para o checkout de R$ 19,90
     const finalUrl = appendCurrentParams(UPSELL_CHECKOUT_URL);
     window.open(finalUrl, '_blank');
     setUpsell({ isOpen: false, selectedKit: null });
