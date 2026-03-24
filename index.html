@@ -76,6 +76,15 @@
       .animate-fadeIn {
         animation: fadeIn 0.3s ease-out forwards;
       }
+      @keyframes scroll {
+        0% { transform: translateX(0); }
+        100% { transform: translateX(calc(-50%)); }
+      }
+      .animate-scroll {
+        animation: scroll 30s linear infinite;
+        display: flex;
+        width: max-content;
+      }
       .no-scroll {
         overflow: hidden;
       }
