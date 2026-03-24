@@ -22,9 +22,9 @@ const BundleOffer: React.FC = () => {
   return (
     <section id="oferta" className="py-20 scroll-mt-10">
       <div className="container mx-auto px-4 max-w-5xl">
-        <div className="gradient-gold p-1 rounded-[2.5rem] shadow-2xl overflow-hidden">
+        <div className="gradient-gold p-1 rounded-[2.5rem] shadow-2xl">
           <div className="bg-white p-8 md:p-16 rounded-[2.2rem] text-center relative">
-            <div className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-red-600 text-white px-6 py-2 rounded-full font-black text-lg shadow-lg">
+            <div className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-red-600 text-white px-4 py-1.5 md:px-6 md:py-2 rounded-full font-black text-sm md:text-lg shadow-lg whitespace-nowrap z-10">
               MAIS VENDIDO 🚀
             </div>
             
@@ -76,8 +76,8 @@ const BundleOffer: React.FC = () => {
               <span className="text-gray-400 line-through text-lg md:text-xl">Preço total: R$ 65,40</span>
               <div className="flex flex-col items-center">
                 <span className="text-gray-600 font-bold text-sm md:text-base">HOJE NO PACOTE COMPLETO:</span>
-                <span className="text-6xl md:text-8xl font-black text-orange-600 drop-shadow-sm tracking-tighter">R$ 28,90</span>
-                <span className="text-green-600 font-bold mt-2 text-sm md:text-base">Isso dá menos de R$ 5,00 por classe!</span>
+                <span className="text-6xl md:text-8xl font-black text-orange-600 drop-shadow-sm tracking-tighter">R$ 37,00</span>
+                <span className="text-green-600 font-bold mt-2 text-sm md:text-base">Isso dá pouco mais de R$ 6,00 por classe!</span>
               </div>
             </div>
 
